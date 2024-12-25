@@ -9,7 +9,6 @@ let string = "";
 
 container.addEventListener("click", (e) => {
   const button = e.target;
-
   const value = button.value;
 
   if (value === "C") {
@@ -21,6 +20,7 @@ container.addEventListener("click", (e) => {
     if (result == "") {
       return;
     }
+
     if (result.includes("ln")) {
       if (result.includes("ln(")) {
         const number = parseFloat(
@@ -98,62 +98,94 @@ container.addEventListener("click", (e) => {
     } catch (error) {
       display.value = "Error";
     }
-  } else if (value === "Pi") {
-    display.value =
-      display.value === "" ? Math.PI : parseFloat(display.value) * Math.PI;
-  } else if (value === "e") {
-    display.value =
-      display.value === "" ? Math.E : parseFloat(display.value) * Math.E;
-  } else if (value === "n!") {
-    display.value += "!";
-  } else if (value === "square") {
-    display.value = Math.pow(parseFloat(display.value), 2);
-  } else if (value === "log") {
-    display.value += "log(";
-  } else if (value === "ln") {
-    display.value += "ln(";
-  } else if (value === "sin") {
-    display.value += "sin(";
-  } else if (value === "cos") {
-    display.value += "cos(";
-  } else if (value === "tan") {
-    display.value += "tan(";
-  } else if (value === "sec") {
-    display.value += "sec(";
-  } else if (value === "csc") {
-    display.value += "csc(";
-  } else if (value === "cot") {
-    display.value += "cot(";
-  } else if (value === "Trigonometry") {
-    display.value += "";
-  } else if (value === "tenpower") {
-    display.value += "10^";
-  } else if (value === "Function") {
-    display.value += "";
-  } else if (value === "M+") {
-    if (display.value === "0" || display.value === "") {
-      return;
-    } else {
-      memory += parseFloat(display.value);
-    }
-  } else if (value === "M-") {
-    if (display.value === "0" || display.value === "") {
-      return;
-    } else {
-      memory -= parseFloat(display.value);
-    }
-  } else if (value === "MC") {
-    memory = 0;
-  } else if (value === "MS") {
-    display.value = "";
-  } else if (value === "HC") {
-    history = [];
-    updateHistory();
   } else {
-    if (display.value === "0" || display.value === "") {
-      display.value = value;
-    } else {
-      display.value += value;
+    switch (value) {
+      case "Pi":
+        display.value =
+          display.value === "" ? Math.PI : parseFloat(display.value) * Math.PI;
+        break;
+
+      case "e":
+        display.value =
+          display.value === "" ? Math.E : parseFloat(display.value) * Math.E;
+        break;
+
+      case "n!":
+        display.value += "!";
+        break;
+
+      case "square":
+        display.value = Math.pow(parseFloat(display.value), 2);
+        break;
+
+      case "log":
+        display.value += "log(";
+        break;
+
+      case "ln":
+        display.value += "ln(";
+        break;
+
+      case "sin":
+        display.value += "sin(";
+        break;
+
+      case "cos":
+        display.value += "cos(";
+        break;
+
+      case "tan":
+        display.value += "tan(";
+        break;
+
+      case "sec":
+        display.value += "sec(";
+        break;
+
+      case "csc":
+        display.value += "csc(";
+        break;
+
+      case "cot":
+        display.value += "cot(";
+        break;
+
+      case "tenpower":
+        display.value += "10^";
+        break;
+
+      case "M+":
+        if (display.value !== "0" && display.value !== "") {
+          memory += parseFloat(display.value);
+        }
+        break;
+
+      case "M-":
+        if (display.value !== "0" && display.value !== "") {
+          memory -= parseFloat(display.value);
+        }
+        break;
+
+      case "MC":
+        memory = 0;
+        break;
+
+      case "MS":
+        display.value = "";
+        break;
+
+      case "HC":
+        history = [];
+        updateHistory();
+        break;
+
+      default:
+        if (display.value === "0" || display.value === "") {
+          display.value = value;
+        } else {
+          display.value += value;
+        }
+        break;
     }
   }
 
